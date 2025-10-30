@@ -115,20 +115,19 @@ SUMMARY_FORMAT=<要約の出力形式>
 
 ## 実装ファイル構成
 
-### 新規作成予定ファイル（ワークフローベース）
-
 ```
 src/
 ├── web-summarizer/
 │   ├── application/
-│   │   └── web-summarize-service.ts   # メインワークフロー（3ステップを統合）
+│   │   ├── web-summarize-service.ts     # メインワークフロー（3ステップを統合）
+│   │   └── article-repository.ts        # 記事履歴管理を行うためのインターフェース
 │   ├── agent/
-│   │   └── summarizer-agent.ts       # 記事要約エージェント
+│   │   └── summarizer-agent.ts          # 記事要約エージェント
 │   └── infrastructure/
-│       └── article-history.ts        # 記事履歴管理ユーティリティ
-└── index.ts                           # アプリエントリーポイント
+│       └── json-article-repository.ts   # 記事履歴管理を行うためのインターフェースの実装
+└── index.ts                             # アプリエントリーポイント
 data/
-└── article-history.json               # 記事履歴保存ファイル
+└── article-history.json                 # 記事履歴保存ファイル
 ```
 
 ## 参考情報
