@@ -22,6 +22,7 @@
 **ステップ2: 記事要約生成**
 - AI Agentを使用して各記事を要約
 - 環境変数でプロンプト・形式・長さをカスタマイズ可能
+- mcpサーバーをvercel ai sdkのAgentインスタンスのtoolとして登録
 - 出力: 要約テキスト
 
 **ステップ3: Slack投稿**
@@ -44,6 +45,9 @@ cron.schedule('0 */6 * * *', async () => {
 
 ### 主要依存パッケージ
 `package.json` ファイルを参照すること
+
+### typescriptコンパイラ設定
+`tsconfig.json` ファイルを参照すること
 
 ### AIモデル設定
 - **使用モデル**: Anthropic Claude
