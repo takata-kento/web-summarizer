@@ -1,7 +1,6 @@
 import { summarizeArticle } from "../../src/ai/summarizer";
 import { generateText } from "ai";
 
-// aiモジュールをモック化
 jest.mock("ai", () => ({
   generateText: jest.fn(),
 }));
@@ -12,14 +11,11 @@ describe("summarizeArticle", () => {
   >;
 
   beforeEach(() => {
-    // 環境変数を設定
     process.env.ANTHROPIC_API_KEY = "test-api-key";
-    // モックをリセット
     mockGenerateText.mockReset();
   });
 
   afterEach(() => {
-    // 環境変数をクリア
     delete process.env.ANTHROPIC_API_KEY;
   });
 
