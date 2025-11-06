@@ -14,11 +14,7 @@ describe("JsonArticleRepository", () => {
   });
 
   afterEach(async () => {
-    try {
-      await fs.rm(testDataDir, { recursive: true, force: true });
-    } catch (error) {
-      console.warn("テストデータのクリーンアップに失敗しました:", error);
-    }
+    await fs.rm(testDataDir, { recursive: true, force: true });
   });
 
   describe("getFeedHistory", () => {
