@@ -5,6 +5,19 @@ import {
 import * as fs from "fs/promises";
 import * as path from "path";
 
+function isNodeError(error: unknown): error is NodeJS.ErrnoException {
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    "code" in error &&
+    typeof (error as NodeJS.ErrnoException).code === "string"
+  );
+}
+
+function isFileNotFoundError(error: unknown): boolean {
+  return isNodeError(error) && error.code === "ENOENT";
+}
+
 export class JsonArticleRepository implements ArticleRepository {
   private filePath: string;
 
@@ -19,12 +32,7 @@ export class JsonArticleRepository implements ArticleRepository {
       const history = histories.find((h) => h.feedUrl === feedUrl);
       return history ?? null;
     } catch (error) {
-      if (
-        error &&
-        typeof error === "object" &&
-        "code" in error &&
-        (error as { code: string }).code === "ENOENT"
-      ) {
+      if (isFileNotFoundError(error)) {
         return null;
       }
       throw error;
@@ -37,12 +45,7 @@ export class JsonArticleRepository implements ArticleRepository {
       const fileContent = await fs.readFile(this.filePath, "utf-8");
       histories = JSON.parse(fileContent);
     } catch (error) {
-      if (
-        error &&
-        typeof error === "object" &&
-        "code" in error &&
-        (error as { code: string }).code === "ENOENT"
-      ) {
+      if (isFileNotFoundError(error)) {
         histories = [];
       } else {
         throw error;
