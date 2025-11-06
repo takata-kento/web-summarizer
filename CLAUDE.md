@@ -23,9 +23,9 @@
 
 **ステップ2: 記事要約生成**
 
-- AI Agentを使用して各記事を要約
-- 環境変数でプロンプト・形式・長さをカスタマイズ可能
-- mcpサーバーをvercel ai sdkのAgentインスタンスのtoolとして登録
+- Vercel AI SDKを使用して各記事を要約
+- Anthropic Claudeモデルで要約生成
+- 環境変数でAPIキーを設定
 - 出力: 要約テキスト
 
 **ステップ3: Slack投稿**
@@ -137,17 +137,16 @@ web-summarizer/
 │   ├── application/
 │   │   ├── article-repository.ts           # 記事履歴管理を行うためのインターフェース
 │   │   └── web-summarize-service.ts        # メインワークフロー（3ステップを統合）
-│   ├── agent/
-│   │   └── summarizer-agent.ts             # 記事要約エージェント
+│   ├── ai/
+│   │   └── summarizer.ts                   # 記事要約機能
 │   ├── infrastructure/
 │   │   └── json-article-repository.ts      # 記事履歴管理を行うためのインターフェースの実装
 │   └── index.ts                            # アプリエントリーポイント
 ├── tests/
 │   ├── application/
-│   │   ├── article-repository.test.ts      # article-repositoryのテスト
 │   │   └── web-summarize-service.test.ts   # web-summarize-serviceのテスト
-│   ├── agent/
-│   │   └── summarizer-agent.test.ts        # summarizer-agentのテスト
+│   ├── ai/
+│   │   └── summarizer.test.ts              # summarizerのテスト
 │   └── infrastructure/
 │       └── json-article-repository.test.ts # json-article-repositoryのテスト
 └── data/
