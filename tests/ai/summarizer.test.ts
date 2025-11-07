@@ -31,7 +31,7 @@ describe("summarizeArticle", () => {
       text: "テスト記事の要約です。",
       finishReason: "stop",
       usage: { promptTokens: 100, completionTokens: 50, totalTokens: 150 },
-    } as never);
+    } as any);
 
     // When
     const summary = await summarizeArticle(article);
@@ -57,7 +57,7 @@ describe("summarizeArticle", () => {
       text: "タイトルのみの記事の要約です。",
       finishReason: "stop",
       usage: { promptTokens: 50, completionTokens: 30, totalTokens: 80 },
-    } as never);
+    } as any);
 
     // When
     const summary = await summarizeArticle(article);
