@@ -26,6 +26,7 @@
     "@ai-sdk/mcp": "^0.0.4",
     "@modelcontextprotocol/sdk": "^1.20.2",
     "ai": "^5.0.82",
+    "dotenv": "^17.2.3",
     "node-cron": "^4.2.1",
     "rss-parser": "^3.13.0"
   },
